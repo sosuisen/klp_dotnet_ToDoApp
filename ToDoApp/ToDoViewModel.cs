@@ -11,7 +11,7 @@ namespace ToDoApp
         {
             _listViewRows = new List<RowItems>();
             _listViewRows.Add(new RowItems("Buy milk", DateTime.Now));
-            _listViewRows.Add(new RowItems("Buy PC", new DateTime(2023, 12, 24), true));
+            _listViewRows.Add(new RowItems("Buy new PC", new DateTime(2023, 12, 24), true));
             _listViewRows.Add(new RowItems("Buy chocolate", new DateTime(2024, 2, 14), true));           
         }   
     }
