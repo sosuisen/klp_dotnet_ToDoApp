@@ -1,29 +1,19 @@
 using CommunityToolkit.Mvvm.ComponentModel;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 
 namespace ToDoApp
 {
     internal partial class ToDoViewModel: ObservableObject
     {
-        [ObservableProperty]
-        private List<RowItems> _listViewRows = new();
+        private ToDoModel _model;
+
+        public ObservableCollection<ToDo> ListViewRows { get; set; }
 
         public ToDoViewModel()
         {
-            _listViewRows.Add(new RowItems("Buy milk", DateTime.Now));
-            _listViewRows.Add(new RowItems("Buy new PC", new DateTime(2023, 12, 24), true));
-            _listViewRows.Add(new RowItems("Buy chocolate", new DateTime(2024, 2, 14), true));           
+             _model = new();
+             ListViewRows = new(_model.ToDos);
         }   
-    }
-
-    public partial class RowItems(string name, DateTime deadline, bool completed=false): ObservableObject
-    {
-        [ObservableProperty]
-        private string _name = name;
-
-        [ObservableProperty]
-        private DateTime _deadline = deadline;
-        
-        [ObservableProperty]
-        private bool _completed = completed;
     }
 }
