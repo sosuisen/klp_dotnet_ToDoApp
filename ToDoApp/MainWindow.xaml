@@ -10,7 +10,13 @@
         <ListView ItemsSource="{Binding ListViewRows, UpdateSourceTrigger=PropertyChanged}">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Task" Width="200" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="Name" Width="200">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
                     <GridViewColumn Header="Deadline" Width="200" DisplayMemberBinding="{Binding Deadline}" />
                     <GridViewColumn Header="Completed" Width="200" DisplayMemberBinding="{Binding Completed}" />
                 </GridView>
