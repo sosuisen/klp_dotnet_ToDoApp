@@ -10,7 +10,14 @@
         <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding ListViewRows, UpdateSourceTrigger=PropertyChanged}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Width="200" Binding="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
-                <DataGridTextColumn Header="Deadline" Width="180" Binding="{Binding Deadline}" />
+                <DataGridTemplateColumn Header="Deadline" Width="180">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <DatePicker SelectedDate="{Binding Deadline, UpdateSourceTrigger=PropertyChanged}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
                 <DataGridCheckBoxColumn Header="Completed" Width="80" Binding="{Binding Completed, UpdateSourceTrigger=PropertyChanged}" />
             </DataGrid.Columns>
         </DataGrid>
