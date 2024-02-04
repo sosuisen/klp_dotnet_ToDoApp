@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="419" Width="481">
     <Grid>
-        <ListView ItemsSource="{Binding ListViewRows, UpdateSourceTrigger=PropertyChanged}">
+        <ListView ItemsSource="{Binding ListViewRows, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,0">
             <ListView.View>
                 <GridView>
                     <GridViewColumn x:Name="ParentColumn" Header="Name" Width="200">
@@ -18,10 +18,10 @@
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn Header="Deadline" Width="200" DisplayMemberBinding="{Binding Deadline}" />
-                    <GridViewColumn Header="Completed" Width="70">
+                    <GridViewColumn Header="Completed" Width="80">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <CheckBox IsChecked="{Binding Completed, UpdateSourceTrigger=PropertyChanged}" />
+                                <CheckBox IsChecked="{Binding Completed}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
