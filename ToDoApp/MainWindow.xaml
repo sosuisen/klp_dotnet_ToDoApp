@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ToDoApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="419" Width="481">
+        Title="MainWindow" Height="420" Width="500">
     <Grid>
-        <ListView ItemsSource="{Binding ListViewRows, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,0">
+        <ListView ItemsSource="{Binding ListViewRows, UpdateSourceTrigger=PropertyChanged}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn x:Name="ParentColumn" Header="Name" Width="200">
@@ -17,7 +17,7 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="Deadline" Width="200" DisplayMemberBinding="{Binding Deadline}" />
+                    <GridViewColumn Header="Deadline" Width="180" DisplayMemberBinding="{Binding Deadline}" />
                     <GridViewColumn Header="Completed" Width="80">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
