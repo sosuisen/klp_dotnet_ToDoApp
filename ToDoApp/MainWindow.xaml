@@ -7,26 +7,12 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="420" Width="500">
     <Grid>
-        <ListView ItemsSource="{Binding ListViewRows, UpdateSourceTrigger=PropertyChanged}">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn x:Name="ParentColumn" Header="Name" Width="200">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBox BorderThickness="0" Width="{Binding ActualWidth, ElementName=ParentColumn}" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Header="Deadline" Width="180" DisplayMemberBinding="{Binding Deadline}" />
-                    <GridViewColumn Header="Completed" Width="80">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <CheckBox IsChecked="{Binding Completed}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding ListViewRows, UpdateSourceTrigger=PropertyChanged}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Width="200" Binding="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
+                <DataGridTextColumn Header="Deadline" Width="180" Binding="{Binding Deadline}" />
+                <DataGridCheckBoxColumn Header="Completed" Width="80" Binding="{Binding Completed, UpdateSourceTrigger=PropertyChanged}" />
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>
