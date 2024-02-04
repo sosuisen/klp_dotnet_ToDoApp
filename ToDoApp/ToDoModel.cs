@@ -15,6 +15,8 @@ namespace ToDoApp
         public void UpdateName(ToDo todo, string name) => Debug.WriteLine($"Name has been updated to {name} in ToDo#{todo.Id}");
         public void UpdateDeadline(ToDo todo, DateTime deadline) => Debug.WriteLine($"Deadline has been updated to {deadline} in ToDo#{todo.Id}");
         public void UpdateCompleted(ToDo todo, bool completed) => Debug.WriteLine($"Completed has been updated to {completed} in ToDo#{todo.Id}");
+        public void Add(ToDo todo) => Debug.WriteLine($"ToDo#{todo.Id} has been added");
+        public void Delete(ToDo todo) => Debug.WriteLine($"ToDo#{todo.Id} has been deleted");
     }
 
     partial class ToDo(int id, string name, DateTime deadline, bool completed = false) : ObservableObject

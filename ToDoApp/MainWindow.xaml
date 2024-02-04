@@ -5,20 +5,40 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ToDoApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="420" Width="500">
-    <Grid>
-        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding ListViewRows, UpdateSourceTrigger=PropertyChanged}">
+        Title="MainWindow" Height="420" Width="430">
+    <StackPanel>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBox Grid.Column="0" Width="200" Padding="3"
+                     Text="{Binding NewToDoName, UpdateSourceTrigger=PropertyChanged}"/>
+            <DatePicker Grid.Column="1" Width="120"
+                        SelectedDate="{Binding NewToDoDeadline, UpdateSourceTrigger=PropertyChanged}"/>
+            <Button Grid.Column="2" Content="Add" Command="{Binding AddToDoCommand}"/>
+        </Grid>
+
+        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding ListViewRows, UpdateSourceTrigger=PropertyChanged}" HeadersVisibility="Column">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Width="200" Binding="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
-                <DataGridTemplateColumn Header="Deadline" Width="180">
+                <DataGridTemplateColumn Header="Deadline" Width="120">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <DatePicker SelectedDate="{Binding Deadline, UpdateSourceTrigger=PropertyChanged}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridCheckBoxColumn Header="Completed" Width="80" Binding="{Binding Completed, UpdateSourceTrigger=PropertyChanged}" />
+                <DataGridCheckBoxColumn Width="30" Binding="{Binding Completed, UpdateSourceTrigger=PropertyChanged}" />
+                <DataGridTemplateColumn Width="50">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Delete" Command="{Binding DataContext.DeleteToDoCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-    </Grid>
+    </StackPanel>
 </Window>

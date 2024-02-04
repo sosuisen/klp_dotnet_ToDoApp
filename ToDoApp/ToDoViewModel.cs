@@ -1,7 +1,6 @@
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
-using static ToDoApp.ToDoModel;
 
 namespace ToDoApp
 {
@@ -9,19 +8,19 @@ namespace ToDoApp
     {
         private ToDoModel _model;
 
-        [ObservableProperty]
-        private List<ToDo> _listViewRows;
+        public ObservableCollection<ToDo> ListViewRows { get; set; }
 
-        partial void OnListViewRowsChanged(List<ToDo> value)
-        {
-            Debug.WriteLine(value);
-        }
+        [ObservableProperty]
+        private string _newToDoName = "";
+
+        [ObservableProperty]
+        private DateTime _newToDoDeadline = DateTime.Today;
 
         public ToDoViewModel()
         {
              _model = new();
-             _listViewRows = new(_model.ToDos);
-            foreach (var todo in _listViewRows)
+             ListViewRows = new(_model.ToDos);
+            foreach (var todo in ListViewRows)
             {
                 todo.PropertyChanged += ToDoPropertyChanged;
             }
@@ -43,6 +42,25 @@ namespace ToDoApp
                         _model.UpdateCompleted(todo, todo.Completed);
                         break;
                 }
+            }
+        }
+
+        [RelayCommand]
+        private void AddToDo()
+        {
+            var newId = ListViewRows.Max(x => x.Id) + 1;
+            var todo = new ToDo(newId, NewToDoName, NewToDoDeadline);
+            ListViewRows.Add(todo);
+            _model.Add(todo);
+        }
+
+        [RelayCommand]
+        private void DeleteToDo(object parameter)
+        {
+            if (parameter is ToDo item)
+            {
+                ListViewRows.Remove(item);
+                _model.Delete(item);
             }
         }
     }
