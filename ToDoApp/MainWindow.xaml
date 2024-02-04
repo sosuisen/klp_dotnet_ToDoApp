@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ToDoApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="434" Width="616">
+        Title="MainWindow" Height="419" Width="481">
     <Grid>
         <ListView ItemsSource="{Binding ListViewRows, UpdateSourceTrigger=PropertyChanged}">
             <ListView.View>
@@ -18,7 +18,13 @@
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn Header="Deadline" Width="200" DisplayMemberBinding="{Binding Deadline}" />
-                    <GridViewColumn Header="Completed" Width="200" DisplayMemberBinding="{Binding Completed}" />
+                    <GridViewColumn Header="Completed" Width="70">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding Completed, UpdateSourceTrigger=PropertyChanged}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
