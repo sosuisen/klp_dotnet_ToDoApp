@@ -6,10 +6,19 @@
         xmlns:local="clr-namespace:ToDoApp"
         mc:Ignorable="d"
         Title="ToDo Manager" Height="420" Width="430">
-    <StackPanel>
-        <TextBlock Text="To Do Manager" FontSize="20" FontWeight="Bold" Margin="5"/>
-        <TextBlock Text="Add a new To Do" FontSize="16" Margin="5"/>
-        <Grid>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="To Do Manager" FontSize="20" FontWeight="Bold" Margin="5"/>
+        <TextBlock Grid.Row="1" Text="Add a new To Do" FontSize="16" Margin="5"/>
+
+        <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
@@ -22,10 +31,9 @@
             <Button Grid.Column="2" Content="Add" Command="{Binding AddToDoCommand}"/>
         </Grid>
 
-        <DataGrid AutoGenerateColumns="False"
+        <DataGrid Grid.Row="3" AutoGenerateColumns="False"
                   ItemsSource="{Binding ListViewRows, UpdateSourceTrigger=PropertyChanged}"
-                  HeadersVisibility="Column"
-                  >
+                  HeadersVisibility="Column">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Width="200" Binding="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
                 <DataGridTemplateColumn Header="Deadline" Width="120">
@@ -36,7 +44,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridCheckBoxColumn Width="30" Binding="{Binding Completed, UpdateSourceTrigger=PropertyChanged}" />
-                <DataGridTemplateColumn Width="50">
+                <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Content="Delete" Command="{Binding DataContext.DeleteToDoCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}" />
@@ -45,5 +53,5 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-    </StackPanel>
+    </Grid>
 </Window>
