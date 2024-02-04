@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ToDoApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="420" Width="430">
+        Title="ToDo Manager" Height="420" Width="430">
     <StackPanel>
         <Grid>
             <Grid.ColumnDefinitions>
