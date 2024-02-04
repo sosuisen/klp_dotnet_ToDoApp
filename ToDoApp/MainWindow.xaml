@@ -7,6 +7,8 @@
         mc:Ignorable="d"
         Title="ToDo Manager" Height="420" Width="430">
     <StackPanel>
+        <TextBlock Text="To Do Manager" FontSize="20" FontWeight="Bold" Margin="5"/>
+        <TextBlock Text="Add a new To Do" FontSize="16" Margin="5"/>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
@@ -20,7 +22,10 @@
             <Button Grid.Column="2" Content="Add" Command="{Binding AddToDoCommand}"/>
         </Grid>
 
-        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding ListViewRows, UpdateSourceTrigger=PropertyChanged}" HeadersVisibility="Column">
+        <DataGrid AutoGenerateColumns="False"
+                  ItemsSource="{Binding ListViewRows, UpdateSourceTrigger=PropertyChanged}"
+                  HeadersVisibility="Column"
+                  >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Width="200" Binding="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
                 <DataGridTemplateColumn Header="Deadline" Width="120">
