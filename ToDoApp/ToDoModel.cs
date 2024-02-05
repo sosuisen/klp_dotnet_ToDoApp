@@ -6,9 +6,9 @@ namespace ToDoApp
     internal class ToDoModel
     {
         public List<ToDo> ToDos { get; set; } = [
-            new ToDo(0, "Buy milk", DateTime.Now),
-            new ToDo(1, "Buy new PC", new DateTime(2023, 12, 24), true),
-            new ToDo(2, "Buy chocolate", new DateTime(2024, 2, 14), true)
+            new ToDo("Buy milk", deadline: DateTime.Now, false, 0),
+            new ToDo("Buy new PC", new DateTime(2023, 12, 24), true, 1),
+            new ToDo("Buy chocolate", new DateTime(2024, 2, 14), true, 2)
         ];
 
         public void UpdateName(ToDo todo, string name) => Debug.WriteLine($"Name has been updated to {name} in ToDo#{todo.Id}");
@@ -18,9 +18,9 @@ namespace ToDoApp
         public void Delete(ToDo todo) => Debug.WriteLine($"ToDo#{todo.Id} has been deleted");
     }
 
-    partial class ToDo(int id, string name, DateTime deadline, bool completed = false) : ObservableObject
+    partial class ToDo(string name, DateTime deadline, bool completed = false, int? id = null) : ObservableObject
     {
-        public int Id { get; set; } = id;
+        public int? Id { get; set; } = id;
         [ObservableProperty]
         private string _name = name;
         [ObservableProperty]
