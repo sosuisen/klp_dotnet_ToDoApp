@@ -48,10 +48,11 @@ namespace ToDoApp
         [RelayCommand]
         private void AddToDo()
         {
-            var newId = ListViewRows.Max(x => x.Id) + 1;
-            var todo = new ToDo(NewToDoName, NewToDoDeadline, false, newId);
-            ListViewRows.Add(todo);
-            _model.Add(todo);
+            var todo = new ToDo(NewToDoName, NewToDoDeadline);
+            var newToDo = _model.Add(todo);
+            if (newToDo != null)
+                ListViewRows.Add(newToDo);
+            
             NewToDoName = "";
         }
 
