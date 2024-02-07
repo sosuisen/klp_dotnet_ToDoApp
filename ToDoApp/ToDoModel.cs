@@ -18,7 +18,7 @@ namespace ToDoApp
         public void Delete(ToDo todo) => Debug.WriteLine($"ToDo#{todo.Id} has been deleted");
     }
 
-    partial class ToDo(string name, DateTime deadline, bool completed = false, int? id = null) : ObservableObject
+    partial class ToDo(string name, DateTime deadline, bool completed = false, int priority = 1, int? id = null) : ObservableObject
     {
         public int? Id { get; set; } = id;
         [ObservableProperty]
@@ -27,5 +27,7 @@ namespace ToDoApp
         private DateTime _deadline = deadline;
         [ObservableProperty]
         private bool _completed = completed;
+        [ObservableProperty]
+        private int _priority = priority;
     }
 }
