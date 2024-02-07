@@ -50,6 +50,7 @@ namespace ToDoApp
         {
             var newId = ListViewRows.Max(x => x.Id) + 1;
             var todo = new ToDo(NewToDoName, NewToDoDeadline, false, newId);
+            todo.PropertyChanged += ToDoPropertyChanged;
             ListViewRows.Add(todo);
             _model.Add(todo);
             NewToDoName = "";
