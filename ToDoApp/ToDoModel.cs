@@ -6,24 +6,24 @@ namespace ToDoApp
     internal class ToDoModel
     {
         public List<ToDo> ToDos { get; set; } = [
-                    new ToDo(
-                        id: 0,
-                        name: "Buy milk",
-                        deadline: DateTime.Now
-                        ),
             new ToDo(
-                        id: 1,
-                        name: "Buy new PC",
-                        deadline: new DateTime(2023, 12, 24),
-                        completed: true
-                        ),
+                id: 0,
+                name: "Buy milk",
+                deadline: DateTime.Now
+                ),
             new ToDo(
-                        id: 2,
-                        name: "Buy chocolate",
-                        deadline: new DateTime(2024, 2, 14),
-                        completed: true
-                        )
-                ];
+                id: 1,
+                name: "Buy new PC",
+                deadline: new DateTime(2023, 12, 24),
+                completed: true
+                ),
+            new ToDo(
+                id: 2,
+                name: "Buy chocolate",
+                deadline: new DateTime(2024, 2, 14),
+                completed: true
+                )
+        ];
 
         public void UpdateName(ToDo todo, string name) => Debug.WriteLine($"Name has been updated to {name} in ToDo#{todo.Id}");
         public void UpdateDeadline(ToDo todo, DateTime deadline) => Debug.WriteLine($"Deadline has been updated to {deadline} in ToDo#{todo.Id}");

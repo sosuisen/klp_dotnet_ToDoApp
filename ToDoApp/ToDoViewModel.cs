@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 
 namespace ToDoApp
 {
-    internal partial class ToDoViewModel : ObservableObject
+    internal partial class ToDoViewModel: ObservableObject
     {
         private ToDoModel _model;
 
