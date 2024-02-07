@@ -10,7 +10,6 @@ namespace ToDoApp
         public MainWindow()
         {
             InitializeComponent();
-            this.DataContext = new ToDoViewModel();
         }
     }
 }
