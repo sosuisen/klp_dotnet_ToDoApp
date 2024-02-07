@@ -6,7 +6,9 @@
         xmlns:local="clr-namespace:ToDoApp"
         mc:Ignorable="d"
         Title="ToDo Manager" Height="420" Width="430">
-
+    <Window.DataContext>
+        <local:ToDoViewModel />
+    </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
