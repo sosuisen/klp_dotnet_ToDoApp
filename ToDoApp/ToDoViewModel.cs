@@ -18,8 +18,8 @@ namespace ToDoApp
 
         public ToDoViewModel()
         {
-             _model = new();
-             ListViewRows = new(_model.ToDos);
+            _model = new();
+            ListViewRows = new(_model.ToDos);
             foreach (var todo in ListViewRows)
             {
                 todo.PropertyChanged += ToDoPropertyChanged;
