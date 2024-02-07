@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ToDoApp"
         mc:Ignorable="d"
-        Title="ToDo Manager" Height="420" Width="430">
+        Title="ToDo Manager" Height="420" Width="480">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -23,12 +23,15 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>                
             </Grid.ColumnDefinitions>
             <TextBox Grid.Column="0" Width="200" Padding="3"
                      Text="{Binding NewToDoName, UpdateSourceTrigger=PropertyChanged}"/>
             <DatePicker Grid.Column="1" Width="120"
                         SelectedDate="{Binding NewToDoDeadline, UpdateSourceTrigger=PropertyChanged}"/>
-            <Button Grid.Column="2" Content="Add" Command="{Binding AddToDoCommand}"/>
+            <TextBox Grid.Column="2" Width="50" Padding="3"
+                     Text="{Binding NewToDoPriority, UpdateSourceTrigger=PropertyChanged}"/>
+            <Button Grid.Column="3" Content="Add" Command="{Binding AddToDoCommand}"/>
         </Grid>
 
         <DataGrid Grid.Row="3" AutoGenerateColumns="False"
@@ -43,6 +46,7 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Priority" Width="50" Binding="{Binding Priority, UpdateSourceTrigger=PropertyChanged}" />
                 <DataGridCheckBoxColumn Width="30" Binding="{Binding Completed, UpdateSourceTrigger=PropertyChanged}" />
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
