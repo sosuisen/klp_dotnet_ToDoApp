@@ -51,8 +51,10 @@ namespace ToDoApp
             var todo = new ToDo(NewToDoName, NewToDoDeadline);
             var newToDo = _model.Add(todo);
             if (newToDo != null)
+            {
+                newToDo.PropertyChanged += ToDoPropertyChanged;
                 ListViewRows.Add(newToDo);
-            
+            }
             NewToDoName = "";
         }
 

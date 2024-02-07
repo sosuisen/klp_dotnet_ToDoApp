@@ -2,8 +2,6 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Diagnostics;
-using System.Net.Mime;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ToDoApp
 {
