@@ -23,7 +23,7 @@ namespace ToDoApp
         {
             using (var context = new ToDoContext())
             {
-                ToDos = context.ToDos.Select(t => new ToDo(t.Name, t.Deadline, t.Completed, t.Id)).ToList();
+                ToDos = context.ToDos.Select(t => new ToDo(t.Name, t.Deadline, t.Completed, t.Priority, t.Id)).ToList();
             }
         }
 
@@ -67,6 +67,12 @@ namespace ToDoApp
                 }
             }
         }
+
+        public void UpdatePriority(ToDo todo, int priority)
+        {
+            // Please implement this method
+        }
+
         public ToDo Add(ToDo todo)
         {
             ToDo newToDo;
@@ -94,7 +100,7 @@ namespace ToDoApp
         } 
     }
 
-    partial class ToDo(string name, DateTime deadline, bool completed = false, int? id = null) : ObservableObject
+    partial class ToDo(string name, DateTime deadline, bool completed = false, int priority = 1, int? id = null) : ObservableObject
     {
         public int? Id { get; set; } = id;
         [ObservableProperty]
@@ -103,5 +109,7 @@ namespace ToDoApp
         private DateTime _deadline = deadline;
         [ObservableProperty]
         private bool _completed = completed;
+        [ObservableProperty]
+        private int _priority = priority;
     }
 }
