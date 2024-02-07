@@ -70,7 +70,16 @@ namespace ToDoApp
 
         public void UpdatePriority(ToDo todo, int priority)
         {
-            // Please implement this method
+            using (var context = new ToDoContext())
+            {
+                var taskToUpdate = context.ToDos.Find(todo.Id);
+                if (taskToUpdate != null)
+                {
+                    taskToUpdate.Priority = priority;
+                    context.SaveChanges();
+                    Debug.WriteLine($"Priority has been updated to {priority} in ToDo#{todo.Id}");
+                }
+            }
         }
 
         public ToDo Add(ToDo todo)
