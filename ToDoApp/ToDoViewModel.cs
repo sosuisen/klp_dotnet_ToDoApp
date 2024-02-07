@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 
 namespace ToDoApp
 {
-    internal partial class ToDoViewModel: ObservableObject
+    internal partial class ToDoViewModel : ObservableObject
     {
         private ToDoModel _model;
 
@@ -18,8 +18,8 @@ namespace ToDoApp
 
         public ToDoViewModel()
         {
-             _model = new();
-             ListViewRows = new(_model.ToDos);
+            _model = new();
+            ListViewRows = new(_model.ToDos);
             foreach (var todo in ListViewRows)
             {
                 todo.PropertyChanged += ToDoPropertyChanged;
@@ -41,6 +41,9 @@ namespace ToDoApp
                     case nameof(ToDo.Completed):
                         _model.UpdateCompleted(todo, todo.Completed);
                         break;
+                    case nameof(ToDo.Priority):
+                        _model.UpdatePriority(todo, todo.Priority);
+                        break;
                 }
             }
         }
@@ -49,7 +52,11 @@ namespace ToDoApp
         private void AddToDo()
         {
             var newId = ListViewRows.Max(x => x.Id) + 1;
-            var todo = new ToDo(name: NewToDoName, deadline: NewToDoDeadline, id: newId);
+            var todo = new ToDo(
+                id: newId,
+                name: NewToDoName,
+                deadline: NewToDoDeadline
+                );
             todo.PropertyChanged += ToDoPropertyChanged;
             ListViewRows.Add(todo);
             _model.Add(todo);
