@@ -39,7 +39,7 @@
                   HeadersVisibility="Column">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Width="200" Binding="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
-                <DataGridTemplateColumn Header="Deadline" Width="120">
+                <DataGridTemplateColumn Header="Deadline" Width="120" SortMemberPath="Deadline">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <DatePicker SelectedDate="{Binding Deadline, UpdateSourceTrigger=PropertyChanged}" />
