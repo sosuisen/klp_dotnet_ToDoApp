@@ -5,16 +5,57 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ToDoApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="ToDo Manager" Height="420" Width="480">
+
     <Grid>
-        <ListView ItemsSource="{Binding ListViewRows, UpdateSourceTrigger=PropertyChanged}">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Task" Width="200" DisplayMemberBinding="{Binding Name}" />
-                    <GridViewColumn Header="Deadline" Width="200" DisplayMemberBinding="{Binding Deadline}" />
-                    <GridViewColumn Header="Completed" Width="200" DisplayMemberBinding="{Binding Completed}" />
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="To Do Manager" FontSize="20" FontWeight="Bold" Margin="5"/>
+        <TextBlock Grid.Row="1" Text="Add a new To Do" FontSize="16" Margin="5"/>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBox Grid.Column="0" Width="200" Padding="3"
+                     Text="{Binding NewToDoName, UpdateSourceTrigger=PropertyChanged}"/>
+            <DatePicker Grid.Column="1" Width="120"
+                        SelectedDate="{Binding NewToDoDeadline, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox Grid.Column="2" Width="50" Padding="3"
+                     Text="{Binding NewToDoPriority, UpdateSourceTrigger=PropertyChanged}"/>
+            <Button Grid.Column="3" Content="Add" Command="{Binding AddToDoCommand}"/>
+        </Grid>
+
+        <DataGrid Grid.Row="3" AutoGenerateColumns="False"
+                  ItemsSource="{Binding ListViewRows, UpdateSourceTrigger=PropertyChanged}"
+                  HeadersVisibility="Column">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Width="200" Binding="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
+                <DataGridTemplateColumn Header="Deadline" Width="120">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <DatePicker SelectedDate="{Binding Deadline, UpdateSourceTrigger=PropertyChanged}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Priority" Width="50" Binding="{Binding Priority, UpdateSourceTrigger=PropertyChanged}" />
+                <DataGridCheckBoxColumn Width="30" Binding="{Binding Completed, UpdateSourceTrigger=PropertyChanged}" />
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Delete" Command="{Binding DataContext.DeleteToDoCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>

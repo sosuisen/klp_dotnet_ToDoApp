@@ -1,10 +1,10 @@
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 
 namespace ToDoApp
 {
-    internal partial class ToDoViewModel: ObservableObject
+    internal partial class ToDoViewModel : ObservableObject
     {
         private ToDoModel _model;
 
@@ -12,8 +12,8 @@ namespace ToDoApp
 
         public ToDoViewModel()
         {
-             _model = new();
-             ListViewRows = new(_model.ToDos);
-        }   
+            _model = new();
+            ListViewRows = new(_model.ToDos);
+        }
     }
 }
