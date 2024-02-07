@@ -16,6 +16,9 @@ namespace ToDoApp
         [ObservableProperty]
         private DateTime _newToDoDeadline = DateTime.Today;
 
+        [ObservableProperty]
+        private int _newToDoPriority = 1;
+
         public ToDoViewModel()
         {
             _model = new();
@@ -55,7 +58,8 @@ namespace ToDoApp
             var todo = new ToDo(
                 id: newId,
                 name: NewToDoName,
-                deadline: NewToDoDeadline
+                deadline: NewToDoDeadline,
+                priority: NewToDoPriority
                 );
             todo.PropertyChanged += ToDoPropertyChanged;
             ListViewRows.Add(todo);
