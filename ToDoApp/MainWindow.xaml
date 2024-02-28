@@ -31,8 +31,7 @@
                      Text="{Binding NewToDoName, UpdateSourceTrigger=PropertyChanged}"/>
             <DatePicker Grid.Column="1" Width="120"
                         SelectedDate="{Binding NewToDoDeadline, UpdateSourceTrigger=PropertyChanged}"/>
-            <TextBox Grid.Column="2" Width="50" Padding="3"
-                     Text="{Binding NewToDoPriority, UpdateSourceTrigger=PropertyChanged}"/>
+
             <Button Grid.Column="3" Content="Add" Command="{Binding AddToDoCommand}"/>
         </Grid>
 
